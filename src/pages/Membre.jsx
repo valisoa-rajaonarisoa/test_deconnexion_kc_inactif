@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Membre() {
   return (
-    <div>Membre</div>
+    <div className='bg-red-500'>Membre</div>
   )
 }
