@@ -25,7 +25,7 @@ export default function Navbar() {
               </a>
             </div> */}
     
-            {/* Search and Cart */}
+            {/* Recherche et panier */}
             <div className="flex items-center space-x-4">
               <input
                 type="text"
@@ -53,7 +53,7 @@ export default function Navbar() {
               </a>
             </div>
     
-            {/* Mobile Menu Button */}
+            {/* Menu bouton mobile */}
             <button
               type="button"
               className="block md:hidden text-gray-600 hover:text-blue-600 focus:outline-none"
