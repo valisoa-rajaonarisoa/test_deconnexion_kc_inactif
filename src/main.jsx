@@ -3,27 +3,32 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 //import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Home from './pages/Home';
+import Admin from './pages/Admin';
+import Membre from './pages/Membre';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 const route = createBrowserRouter([
   {
     path: "/",
-    element: <h1>Home</h1>
+    element: <Home/>
   },
   {
     path: "/admin",
-    element: <h1>Admin</h1>
+    element: <Admin/>
   },
   {
     path: "/membre",
-    element: <h1>Membre</h1>
+    element: <Membre/>
   },
   {
     path: "/login",
-    element: <h1>Login</h1>
+    element: <Login/>
   },
   {
     path: "/register",
-    element: <h1>Register</h1>
+    element: <Register/>
   }
 ]);
 
