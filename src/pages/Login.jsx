@@ -4,14 +4,14 @@ export default function Login() {
   return (
     <div className='login'>
 
-      <h2 className='mx-auto text-zinc-300 text-3xl'>Let's go ! </h2>
+      <h2 className='mx-auto text-zinc-300 text-3xl'>Se connecter</h2>
       <div class="inputBox">
         <input type="text" required="required"/>
         <span>email</span>
       </div>
 
       <div class="inputBox">
-        <input type="text" required="required"/>
+        <input type="password" required="required"/>
         <span>password</span>
       </div>
 
