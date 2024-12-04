@@ -71,7 +71,10 @@ export default function ChartPage() {
   return (
     <>
      {/* **************************petite carte ***************************** */}
+     <h3 className='text-3xl font-bold text-blue-500 mb-4'>Chart</h3>
+
         <div className='flex flex-wrap '>
+
 
             {
                 dataCardMembreFormationCommande.map((element,index)=>(
@@ -91,7 +94,7 @@ export default function ChartPage() {
 
             <div className='w-full bg-white p-4 rounded-3xl shadow-2xl'>
               
-              <h3 className='text-3xl mt-7 font-bold text-blue-600'>Static des formations </h3>
+              <h3 className='text-3xl mt-7 font-bold text-blue-500'>Static des formations </h3>
               <ChartFormation data={dataFormation}/>
 
             </div>

@@ -23,7 +23,7 @@ export default function Navbar() {
         onClick={() => setIsClickUserMenu(!isClickUserMenu)}
       >
         <img
-          src="https://via.placeholder.com/40"
+          src="https://images.pexels.com/photos/29626562/pexels-photo-29626562/free-photo-of-une-femme-elegante-posant-dans-le-paysage-urbain-de-bakou.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt="User avatar"
           className="w-10 h-10 rounded-full"
         />
