@@ -7,9 +7,9 @@ export default function Membre() {
       <div className="App">
         <Navbar />
         <main className="container mx-auto mt-10">
-          <h1 className="text-4xl font-bold text-center">Welcome to ShopEase</h1>
+          <h1 className="text-4xl font-bold text-center">Bienvenue dans membre</h1>
           <p className="text-gray-600 text-center mt-4">
-            Discover amazing products at the best prices.
+          Découvrez des formations étonnants aux meilleurs prix.
           </p>
         </main>
       </div>

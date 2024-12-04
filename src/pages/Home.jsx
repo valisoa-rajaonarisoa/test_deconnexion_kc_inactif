@@ -1,7 +1,7 @@
 import React from 'react'
+import MenuHome from './MenuHome';
 
 export default function Home() {
-  return (
     return (
       <nav className="bg-white shadow-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -10,21 +10,7 @@ export default function Home() {
             TalentUp
           </a>
   
-          {/* Menu */}
-          {/* <div className="hidden md:flex space-x-6">
-            <a href="/" className="text-gray-600 hover:text-blue-600">
-              Home
-            </a>
-            <a href="/products" className="text-gray-600 hover:text-blue-600">
-              Products
-            </a>
-            <a href="/about" className="text-gray-600 hover:text-blue-600">
-              About Us
-            </a>
-            <a href="/contact" className="text-gray-600 hover:text-blue-600">
-              Contact
-            </a>
-          </div> */}
+          <MenuHome />
   
           {/* Recherche et panier */}
           <div className="flex items-center space-x-4">
@@ -77,5 +63,4 @@ export default function Home() {
         </div>
       </nav>
     );
-  )
 }
