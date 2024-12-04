@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Login() {
   return (
-    <div className='login'>
+    <form className='login'>
 
       <h2 className='mx-auto text-zinc-300 text-3xl'>Se connecter</h2>
       <div class="inputBox">
@@ -22,6 +22,6 @@ export default function Login() {
 
       <Link to="/register" className='text-zinc-200 text-md mx-auto '>J'ai pas encore un compte </Link>
 
-    </div>
+    </form>
   )
 }

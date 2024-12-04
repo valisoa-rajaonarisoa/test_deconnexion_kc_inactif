@@ -5,7 +5,7 @@ export default function Navbar() {
   const [isClickUserMenu, setIsClickUserMenu] = useState(false);
 
   return (
-    <nav className="relative top-0 left-64 w-[calc(100%-16rem)] bg-zinc-300  z-50 px-2">
+    <nav className="relative top-0 left-64 w-[calc(100%-16rem)] z-60 px-2">
     <div className="container mx-auto px-4 py-4 flex justify-between items-center">
     {/* Barre de recherche */}
     <div className="flex-grow">

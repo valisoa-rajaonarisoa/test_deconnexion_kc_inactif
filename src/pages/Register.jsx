@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Register() {
   return (
-    <div className='login'>
+    <form className='login'>
 
       <h2 className='mx-auto text-zinc-300 text-3xl'>Inscription</h2>
       <div class="inputBox">
@@ -32,6 +32,6 @@ export default function Register() {
 
       <Link to="/login" className='text-zinc-200 text-md mx-auto '>J'ai deja un compte</Link>
 
-    </div>
+    </form>
   )
 }

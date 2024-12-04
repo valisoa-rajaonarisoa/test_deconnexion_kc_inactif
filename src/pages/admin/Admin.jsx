@@ -14,7 +14,7 @@ export default function Admin() {
     <div>
         <Navbar/>
         <SideMenu/>
-        <main className='relative top-0 left-64 w-[calc(100%-16rem)] bg-zinc-300 shadow z-30 px-5 pt-10 pb-4'>
+        <main className='relative top-0 left-64 w-[calc(100%-16rem)] z-30 px-5 pt-10 pb-4'>
           <Outlet/>
         </main>
     </div>
