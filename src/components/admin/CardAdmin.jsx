@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-export default function CardAdmin({ name, nombre, logo }) {
+export default function CardAdmin({ id,name, nombre, logo,handleClickNavigate}) {
   const [currentNumber, setCurrentNumber] = useState(0); 
 
+  console.log(nombre)
   useEffect(() => {
     const increment = Math.ceil(nombre / 50); 
     const interval = setInterval(() => {
@@ -19,10 +20,19 @@ export default function CardAdmin({ name, nombre, logo }) {
   }, [nombre]);
 
   return (
-    <div className="w-2/5 pl-5 py-5 pr-2 flex rounded-xl shadow-xl bg-white mr-12 mb-10">
-      <button>
+    <div 
+      className="w-2/5 pl-5 py-5 pr-2 flex rounded-xl shadow-xl bg-white mr-12 mb-10"
+
+      // *********************pour navigue et envoye de l'id de l'objet (formation )
+      onClick={()=>handleClickNavigate(id)}
+
+
+    >
+      <button
+       
+      >
         <img
-          src="https://via.placeholder.com/40"
+          src={logo || "https://via.placeholder.com/40"}
           alt="User avatar"
           className="w-28 h-28 rounded-full"
         />

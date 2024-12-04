@@ -13,6 +13,7 @@ import FormationPage from './pages/admin/FormationPage';
 import MembrePage from './pages/admin/MembrePage';
 import CommandePage from './pages/admin/CommandePage';
 import ChartPage from './pages/admin/ChartPage';
+import OneCommandePage from './pages/admin/OneCommandePage';
 
 const route = createBrowserRouter([
   {
@@ -36,12 +37,17 @@ const route = createBrowserRouter([
       },
 
       {
+        path: "/admin/commande/:id",
+        element: <OneCommandePage/>
+      },
+
+      {
         path: "/admin/membre",
         element: <MembrePage/>
       },
 
       ,{
-        path:"/admin/chart",
+        path:"/admin/",
         element: <ChartPage/>
       }
 

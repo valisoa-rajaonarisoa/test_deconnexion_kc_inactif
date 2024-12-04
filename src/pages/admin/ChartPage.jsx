@@ -47,15 +47,38 @@ export default function ChartPage() {
   ]
 
 
+  const dataCardMembreFormationCommande=[
+    {
+        nom:"membre",
+        nombre:12,
+        image : "https://images.pexels.com/photos/671658/pexels-photo-671658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+        nom:"commande",
+        nombre:12,
+        image : "https://images.pexels.com/photos/671658/pexels-photo-671658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+        nom:"formation",
+        nombre:12,
+        image : "https://images.pexels.com/photos/671658/pexels-photo-671658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    }
+  ]
+
+  
+
+// *****************************************************fause 
   return (
     <>
      {/* **************************petite carte ***************************** */}
         <div className='flex flex-wrap '>
-            <CardAdmin name={"formation"} nombre={12} logo={"logo"}/>
 
-            <CardAdmin name={"commande"} nombre={16} logo={"logo"}/>
-
-            <CardAdmin name={"membre"} nombre={0} logo={"logo"}/>
+            {
+                dataCardMembreFormationCommande.map((element,index)=>(
+                    <CardAdmin key={index} name={element.nom} nombre={element.nombre} logo={element.image}/>
+                ))
+            }
+           
             
           </div>
 
@@ -68,7 +91,7 @@ export default function ChartPage() {
 
             <div className='w-full bg-white p-4 rounded-3xl shadow-2xl'>
               
-              <h3 className='text-3xl mt-7 font-bold text-blue-800'>Static des formations </h3>
+              <h3 className='text-3xl mt-7 font-bold text-blue-600'>Static des formations </h3>
               <ChartFormation data={dataFormation}/>
 
             </div>
