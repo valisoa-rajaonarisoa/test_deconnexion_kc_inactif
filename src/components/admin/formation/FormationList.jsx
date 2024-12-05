@@ -1,32 +1,41 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useSubmit } from 'react-router-dom';
 
+import { useQuery ,useQueryClient} from '@tanstack/react-query';
+import LoadingAnimation from '../../loading/LoadingAnimation';
 
 export default function FormationList({toogleFormationPage}) {
-  const data = [
-   
-    {
-      image: 'https://images.pexels.com/photos/671658/pexels-photo-671658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      formation: 'Advanced Node.js',
-      price: 200,
-      status: 'publié',
-      quantity: 5,
-      author: 'Jane Smith',
-    },
-    {
-      image: 'https://images.pexels.com/photos/671658/pexels-photo-671658.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      formation: 'GraphQL Mastery',
-      price: 250,
-      status: 'inactif',
-      quantity: 8,
-      author: 'Alice Johnson',
-    },
-  ];
+  
 
 
-  // *****************************************
+  const queryClient= useQueryClient();
 
+  const {
+    data:formations,
+    error, 
+    isLoading , 
+  }= useQuery(
+    { 
+      queryKey: ["formation"],  //***Nom de la requette 
+      queryFn:()=>axios.get(`${import.meta.env.VITE_API_URL_FORMATION}`).then(  //fonction de la requette 
+      (res)=> res.data
+      ),
 
+      onerror:(error)=> console.log(error ) //erreur 
+    }
+  )
+ 
+
+// *******************************************************
+
+  if(isLoading){
+    return <>
+     <LoadingAnimation/>
+    </>
+  }
+
+ 
 
 
   return (
@@ -37,48 +46,48 @@ export default function FormationList({toogleFormationPage}) {
             <th className="px-4 py-3 text-left">Formation</th>
             <th className="px-4 py-3 text-left">Price</th>
             <th className="px-4 py-3 text-left">Status</th>
-            <th className="px-4 py-3 text-left">Quantité</th>
             <th className="px-4 py-3 text-left">Auteur</th>
             <th className="px-4 py-3 text-center">Action</th>
           </tr>
         </thead>
         <tbody>
-          {data.map((item, index) => (
+          {formations.map((formation) => (
             <tr
-              key={index}
+              key={formation.id}
               className="border-b hover:bg-gray-100 transition duration-200"
             >
               {/* Formation (Image + Nom) */}
               <td className="px-4 py-3 flex items-center space-x-3">
                 <img
-                  src={item.image}
-                  alt={item.formation}
+                  src={formation.image}
+                  // alt={formation.titre}
                   className="w-10 h-10 rounded-full"
                 />
-                <span className="font-medium text-gray-700">{item.formation}</span>
+                <span className="font-medium text-gray-700">{formation.titre}</span>
               </td>
 
               {/* Price */}
-              <td className="px-4 py-3 text-gray-600">${item.price}</td>
+              <td className="px-4 py-3 text-gray-600">${formation.prix}</td>
 
               {/* Status */}
               <td className="px-4 py-3">
                 <span
                   className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                    item.status === "publié"
-                      ? "bg-green-100 text-green-700"
+                    formation.status ? "bg-green-100 text-green-700"
                       : "bg-red-100 text-red-700"
                   }`}
                 >
-                  {item.status}
+                  {
+                   formation.status? "publie" : "inactif"
+                  }
                 </span>
               </td>
 
               {/* Quantité */}
-              <td className="px-4 py-3 text-gray-600">{item.quantity}</td>
+            
 
               {/* Auteur */}
-              <td className="px-4 py-3 text-gray-600">{item.author}</td>
+              <td className="px-4 py-3 text-gray-600">{formation.auteur}</td>
 
               {/* Action */}
               <td className="px-4 py-3 text-center space-x-2">

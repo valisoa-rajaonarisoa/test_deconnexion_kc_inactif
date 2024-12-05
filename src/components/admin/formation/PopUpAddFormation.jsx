@@ -1,30 +1,98 @@
+import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function PopUpAddFormation({ onClose }) {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    author: "",
-    status: "Inactive",
-    price: "",
-    image: null, // Champ pour l'image
-  });
+ 
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  // **********************navigation 
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
-  };
+  const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form data submitted:", formData);
-    alert("Formulaire soumis avec succès !");
-    onClose(); // Ferme le popup après la soumission
-  };
+  // *********************initialisation 
+  const {handleSubmit,register,watch,formState:{error},reset}= useForm();
+
+
+
+
+  // **************mutation 
+
+  const queryClient= useQueryClient();
+
+  const mutation= useMutation(
+    {
+      mutationFn:(formation) =>{
+        return axios.post(`${import.meta.env.VITE_API_URL_FORMATION}`,formation)
+      },
+
+      onError:(error)=>{toast.error("une erreur s'est produite "); console.log(error)},
+
+      onSuccess:()=>{
+
+
+        queryClient.invalidateQueries("formation")
+
+
+
+        toast.success("Formation ajoutéé");
+      }
+    }
+  )
+
+
+
+
+  // *****************fonction onSubmit 
+  const onSubmit= async (data)=>{
+
+    // *********************recuperation 
+
+    let status=null;
+    if(data.status=="Published"){
+      status=true
+    }else
+    {
+      status=false
+    }
+    
+    const formation={
+      titre: data.titre,
+      description:data.description,
+      auteur:data.auteur,
+      status:status,
+      prix:data.prix,
+      image:data.image
+    }
+
+    console.log(formation)
+
+
+
+    try{
+
+      mutation.mutate(formation);
+
+
+      reset();
+
+
+      onClose(); // Ferme le popup après la soumission
+
+    }catch(error)
+    {
+      console.log(error);
+
+      toast.error("une erreur est survenue ");
+    }
+
+  }
+
+
+   
+
 
   return (
     <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-100">
@@ -53,17 +121,32 @@ export default function PopUpAddFormation({ onClose }) {
         <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">
           Ajouter une Formation
         </h2>
-        <form onSubmit={handleSubmit}>
+
+
+        <form onSubmit={handleSubmit(onSubmit)}>
           {/* Titre */}
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2">Titre</label>
             <input
               type="text"
               name="title"
-              value={formData.title}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Titre de la formation"
+              
+              className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2   focus:ring-blue-400"
+                  placeholder="Titre de la formation"
+
+
+              // ***********************recuperation 
+
+              {...register("titre",
+                  {
+                    required:"Entrez le titre du formation  ",
+                    minLength:{
+                    value:3,
+                    message:"Entrez aux moins 3 caracteres "
+                  }
+                }
+                )
+              }
             />
           </div>
 
@@ -74,11 +157,23 @@ export default function PopUpAddFormation({ onClose }) {
             </label>
             <textarea
               name="description"
-              value={formData.description}
-              onChange={handleChange}
+            
+             
               className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
               rows="4"
               placeholder="Description de la formation"
+
+              // ***********************recuperation 
+              {...register("description",
+                {
+                  required:"Entrez le titre du formation  ",
+                  minLength:{
+                  value:5,
+                  message:"Entrez aux moins 5 caracteres "
+                }
+              }
+              )
+            }
             ></textarea>
           </div>
 
@@ -88,10 +183,23 @@ export default function PopUpAddFormation({ onClose }) {
             <input
               type="text"
               name="author"
-              value={formData.author}
-              onChange={handleChange}
+             
               className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Nom de l'auteur"
+
+
+              // ***********************recuperation 
+
+              {...register("auteur",
+                {
+                  required:"Entrez le titre du formation  ",
+                  minLength:{
+                  value:3,
+                  message:"Entrez aux moins 3 caracteres "
+                 }
+                }
+               )
+              }
             />
           </div>
 
@@ -104,9 +212,12 @@ export default function PopUpAddFormation({ onClose }) {
                   type="radio"
                   name="status"
                   value="Published"
-                  checked={formData.status === "Published"}
-                  onChange={handleChange}
                   className="form-radio text-blue-600"
+
+
+                  // ***********************recuperation 
+
+                  {...register("status")}
                 />
                 <span>Publié</span>
               </label>
@@ -115,9 +226,14 @@ export default function PopUpAddFormation({ onClose }) {
                   type="radio"
                   name="status"
                   value="Inactive"
-                  checked={formData.status === "Inactive"}
-                  onChange={handleChange}
+                
                   className="form-radio text-blue-600"
+
+                  checked
+
+                  // ******************recupartion
+                  {...register("status")}
+
                 />
                 <span>Inactif</span>
               </label>
@@ -130,10 +246,20 @@ export default function PopUpAddFormation({ onClose }) {
             <input
               type="number"
               name="price"
-              value={formData.price}
-              onChange={handleChange}
+            
               className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Prix de la formation"
+
+
+             // ***********************recuperation 
+
+             {...register("prix",
+              {
+                required:"Entrez le prix  ",
+              }
+              )
+             }
+
             />
           </div>
 
@@ -145,8 +271,17 @@ export default function PopUpAddFormation({ onClose }) {
             <input
               type="file"
               accept="image/*"
-              onChange={handleFileChange}
+             
               className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+
+
+              {...register("image",
+                {
+                  required:"Entrez l' iamge du formation  ",
+                  
+                }
+               )
+              }
             />
           </div>
 

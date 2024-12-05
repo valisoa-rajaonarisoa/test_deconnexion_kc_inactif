@@ -2,34 +2,34 @@
   "formation": [
     {
       "id": "1",
-      "titre": "Sécurisez vos applications avec Keycloack",
+      "titre": " Keycloack",
       "description": "Description concernant Keycloack",
       "auteur": "Anjara Valisoa",
       "status": true,
       "prix": 10,
-      "photo": "test"
+      "image": "test"
     },
     {
       "id": "2",
-      "titre": "Développer vos applications avec React",
+      "titre": "React",
       "description": "Description concernant react",
       "auteur": "Fandresena Joseph",
       "status": true,
       "prix": 7,
-      "photo": "test"
+      "image": "test"
     },
     {
       "id": "3",
-      "titre": "Sécurisez vos applications avec Keycloack",
+      "titre": "Keycloack",
       "description": "Description concernant Keycloack",
       "auteur": "Anjara Valisoa",
       "status": true,
       "prix": 10,
-      "photo": "test"
+      "image": "test"
     },
     {
       "id": "4",
-      "titre": "Développer vos applications avec React",
+      "titre": "Java",
       "description": "Description concernant react",
       "auteur": "Fandresena Joseph",
       "status": true,
@@ -37,76 +37,26 @@
       "photo": "test"
     },
     {
-      "id": "5",
-      "titre": "Sécurisez vos applications avec Keycloack",
-      "description": "Description concernant Keycloack",
-      "auteur": "Anjara Valisoa",
-      "status": true,
-      "prix": 10,
-      "photo": "test"
+      "id": "7e11",
+      "titre": "mangeto",
+      "description": "milay ito zandry e",
+      "auteur": "artiste",
+      "status": false,
+      "prix": "4",
+      "image": {
+        "0": {}
+      }
     },
     {
-      "id": "6",
-      "titre": "Développer vos applications avec React",
-      "description": "Description concernant react",
-      "auteur": "Fandresena Joseph",
-      "status": true,
-      "prix": 7,
-      "photo": "test"
-    },
-    {
-      "id": "7",
-      "titre": "Sécurisez vos applications avec Keycloack",
-      "description": "Description concernant Keycloack",
-      "auteur": "Anjara Valisoa",
-      "status": true,
-      "prix": 10,
-      "photo": "test"
-    },
-    {
-      "id": "8",
-      "titre": "Développer vos applications avec React",
-      "description": "Description concernant react",
-      "auteur": "Fandresena Joseph",
-      "status": true,
-      "prix": 7,
-      "photo": "test"
-    },
-    {
-      "id": "1",
-      "titre": "Sécurisez vos applications avec Keycloack",
-      "description": "Description concernant Keycloack",
-      "auteur": "Anjara Valisoa",
-      "status": true,
-      "prix": 10,
-      "photo": "test"
-    },
-    {
-      "id": "2",
-      "titre": "Développer vos applications avec React",
-      "description": "Description concernant react",
-      "auteur": "Fandresena Joseph",
-      "status": true,
-      "prix": 7,
-      "photo": "test"
-    },
-    {
-      "id": "1",
-      "titre": "Sécurisez vos applications avec Keycloack",
-      "description": "Description concernant Keycloack",
-      "auteur": "Anjara Valisoa",
-      "status": true,
-      "prix": 10,
-      "photo": "test"
-    },
-    {
-      "id": "2",
-      "titre": "Développer vos applications avec React",
-      "description": "Description concernant react",
-      "auteur": "Fandresena Joseph",
-      "status": true,
-      "prix": 7,
-      "photo": "test"
+      "id": "3139",
+      "titre": "zaza",
+      "description": "aaaaaaaaaaaaaa",
+      "auteur": "artiste",
+      "status": false,
+      "prix": "6",
+      "image": {
+        "0": {}
+      }
     }
   ],
   "membre": [
