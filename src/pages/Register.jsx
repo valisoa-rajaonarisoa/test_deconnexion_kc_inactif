@@ -61,13 +61,17 @@ export default function Register() {
     try {
       // Vérifie si le membre existe déjà
       const isMmembreExist = await axios.get(
-        `${import.meta.env.VITE_API_URL_MEMBRE}?email=${membre.email}`
+        `${import.meta.env.VITE_API_URL_MEMBRE}/${membre.email}`
       );
     
      
+
+
       if (isMmembreExist.data.length == 0) {
         await toast.promise(
+          // axios.post(`${import.meta.env.VITE_API_URL_MEMBRE}`, membre),
           axios.post(`${import.meta.env.VITE_API_URL_MEMBRE}`, membre),
+          
           {
             pending: "Enregistrement en cours....",
             success: "Bravo, compte créé avec succès",
@@ -96,6 +100,10 @@ export default function Register() {
         
         toast.error("Cet utilisateur existe déjà");
       }
+
+      console.log(isMmembreExist.data)
+
+
     } catch (error) {
       console.log(error);
       toast.error("Une erreur s'est produite");

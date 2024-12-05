@@ -64,7 +64,7 @@ export default function PopUpAddFormation({ onClose }) {
       auteur:data.auteur,
       status:status,
       prix:data.prix,
-      image:data.image
+      photo:data.image
     }
 
     console.log(formation)

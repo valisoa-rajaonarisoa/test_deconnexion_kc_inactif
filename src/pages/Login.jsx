@@ -40,7 +40,7 @@ export default function Login() {
     try {
       
 
-      const isMmembreExist= await axios.get(`${import.meta.env.VITE_API_URL_MEMBRE}?email=${data.email}`);
+      const isMmembreExist= await axios.get(`${import.meta.env.VITE_API_URL_MEMBRE}/${data.email}`);
 
       if(isMmembreExist.data.length>0){
         // *************existe et verification du mdp
