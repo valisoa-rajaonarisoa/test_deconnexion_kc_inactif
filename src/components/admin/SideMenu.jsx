@@ -1,7 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function SideMenu() {
+
+
+const navigate=useNavigate()
+
+const handleLogout=()=>{
+  localStorage.clear();
+
+ 
+  toast('bye bye ', {
+    icon: '👏',
+  });
+
+  navigate("/login");
+
+}
+
+
+
     return (
       <div className="fixed top-0 left-0 h-full w-64 bg-gray-700 text-white shadow-lg z-40">
         <div className="p-4">
@@ -52,15 +71,18 @@ export default function SideMenu() {
 
 
             <li>
-              <Link to="/login" className='block py-2 px-4 rounded hover:bg-gray-800 transition duration-200 flex'>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+
+              <button
+               onClick={handleLogout}
+               className='block py-2 px-4 rounded hover:bg-gray-800 transition duration-200 flex'
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
               </svg>
 
-
-
                 <span className='ml-2'>Deconnexion</span>
-              </Link>
+              </button>
+            
             </li>
           </ul>
         </div>

@@ -14,6 +14,13 @@ import MembrePage from './pages/admin/MembrePage';
 import CommandePage from './pages/admin/CommandePage';
 import ChartPage from './pages/admin/ChartPage';
 import OneCommandePage from './pages/admin/OneCommandePage';
+import { Toaster } from 'react-hot-toast';
+import ProtectedRouteAdmin from './utils/ProtectedRouteAdmin';
+import ProtectedRouteMembre from './utils/ProtectedRouteMembre';
+
+// *********recupartion du localStorage 
+const storedMembre = JSON.parse(localStorage.getItem("membre"));
+
 
 const route = createBrowserRouter([
   {
@@ -22,7 +29,10 @@ const route = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <Admin/>,
+    element: 
+    <ProtectedRouteAdmin storedMembre={storedMembre}>
+      <Admin/>
+    </ProtectedRouteAdmin>  ,
 
     children:[
 
@@ -55,7 +65,10 @@ const route = createBrowserRouter([
   },
   {
     path: "/membre",
-    element: <Membre/>
+    element: 
+    <ProtectedRouteMembre storedMembre={storedMembre}>
+      <Membre/>
+    </ProtectedRouteMembre>
   },
   {
     path: "/login",
@@ -68,8 +81,11 @@ const route = createBrowserRouter([
 ]);
 
 
+
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Toaster/>
     <RouterProvider router={ route }></RouterProvider>
   </StrictMode>,
 )

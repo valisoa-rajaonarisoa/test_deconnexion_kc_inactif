@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 export default function CardAdmin({ id,name, nombre, logo,handleClickNavigate}) {
   const [currentNumber, setCurrentNumber] = useState(0); 
-
-  console.log(nombre)
   useEffect(() => {
     const increment = Math.ceil(nombre / 50); 
     const interval = setInterval(() => {
@@ -25,7 +23,6 @@ export default function CardAdmin({ id,name, nombre, logo,handleClickNavigate}) 
 
       // *********************pour navigue et envoye de l'id de l'objet (formation )
       onClick={()=>handleClickNavigate(id)}
-
 
     >
       <button
