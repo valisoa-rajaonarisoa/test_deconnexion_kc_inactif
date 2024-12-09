@@ -21,6 +21,9 @@ import { Toaster } from 'react-hot-toast';
 import { QueryClient,QueryClientProvider } from '@tanstack/react-query';
 import KeycloakContextProvider from './context/KeycloakContext';
 import ProtectedRouteAdmin from './utils/ProtectedRouteAdmin';
+import ProtectedRouteMembre from './utils/ProtectedRouteMembre';
+
+import ProtectedRoute from './utils/ProtectedRoute';
 
 
 
@@ -30,6 +33,15 @@ const route = createBrowserRouter([
     path: "/",
     element: <Home/>
   },
+
+  // **********************protected 
+  {
+    path: "/protected",
+    element:  <KeycloakContextProvider> <ProtectedRoute/> </KeycloakContextProvider>
+   
+  },
+
+  // *************************admin 
   {
     path: "/admin",
     element:  
@@ -70,9 +82,16 @@ const route = createBrowserRouter([
 
     ]
   },
+
+
+  // *****************************membre 
   {
     path: "/membre",
-    element: <Membre/>
+    element: <KeycloakContextProvider>
+    <ProtectedRouteMembre >
+      <Membre/>
+    </ProtectedRouteMembre>
+  </KeycloakContextProvider>
   },
  
 ]);

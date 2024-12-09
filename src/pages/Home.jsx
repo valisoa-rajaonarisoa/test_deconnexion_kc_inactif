@@ -1,5 +1,6 @@
 import React from 'react'
 import MenuHome from './MenuHome';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
     return (
@@ -38,6 +39,7 @@ export default function Home() {
                 3
               </span>
             </a>
+            <Link to={import.meta.env.VITE_API_KC_WEB_ORIGIN}>Se connecter</Link>
           </div>
   
           {/* Menu bouton mobile */}
