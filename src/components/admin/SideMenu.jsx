@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import { useKeycloak } from '../../context/KeycloakContext';
 
 export default function SideMenu() {
 
-
-const navigate=useNavigate()
-
+  const {keycloak}= useKeycloak();
 
     return (
       <div className="fixed top-0 left-0 h-full w-64 bg-gray-700 text-white shadow-lg z-40">
@@ -62,6 +61,10 @@ const navigate=useNavigate()
               <button
                
                className='block py-2 px-4 rounded hover:bg-gray-800 transition duration-200 flex'
+
+
+              //  *****Deconnexion 
+               onClick={() => keycloak.logout({ redirectUri: 'http://localhost:5173' })}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />

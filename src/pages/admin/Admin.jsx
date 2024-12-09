@@ -3,9 +3,19 @@ import Navbar from '../../components/admin/Navbar'
 
 import SideMenu from '../../components/admin/SideMenu'
 import { Outlet } from 'react-router-dom'
+import { useKeycloak } from '../../context/KeycloakContext'
 
 
 export default function Admin() {
+
+  // *******************recuperation 
+
+
+  const kc= useKeycloak();
+
+  console.log(kc);
+
+
 
 
   // ********************************fause data pour manipuler les chartJs
