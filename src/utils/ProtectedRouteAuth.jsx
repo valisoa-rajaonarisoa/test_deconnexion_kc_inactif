@@ -12,15 +12,31 @@ export default function ProtectedRouteAuth({children}) {
 
 
   if(!keycloakInitialized) return <div>**** Chargement en cours *****</div>
+  console.log(keycloak);
   
   if(keycloak.authenticated){
+    // const roleMembrePresent = keycloak.realmAccess && keycloak.realmAccess.roles.includes("role-membre");
+    // if(roleMembrePresent) {
+      
+    // }
+    // console.log(keycloak);
+
+    let whoIsUser=null;
+    
     if(keycloak.hasRealmRole('role-membre')){
+
+      whoIsUser="membre";
+
       navigate("/membre")
     }else if(keycloak.hasRealmRole('role-admin')){
-      navigate("/admin")
-    }else{
-      navigate("/protected")
+      whoIsUser="admin";
+
+      navigate("/admin");
+
     }
+
+    localStorage.setItem("user",whoIsUser);
+  
     
   }
 

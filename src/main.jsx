@@ -24,6 +24,7 @@ import ProtectedRouteAdmin from './utils/ProtectedRouteAdmin';
 import ProtectedRouteMembre from './utils/ProtectedRouteMembre';
 
 import ProtectedRouteAuth from './utils/ProtectedRouteAuth';
+import ProtectedRouteHome from './utils/ProtectedRouteHome';
 
 
 
@@ -32,7 +33,9 @@ const route = createBrowserRouter([
   {
     path: "/",
     element:
+    <ProtectedRouteHome>
       <Home/>
+    </ProtectedRouteHome>
   },
 
   // **********************protected 

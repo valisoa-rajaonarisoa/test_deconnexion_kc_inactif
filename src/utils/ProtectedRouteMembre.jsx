@@ -16,6 +16,7 @@ export default function ProtectedRouteMembre({children}) {
 
   if(keycloak.authenticated){
     if(keycloak.hasRealmRole('role-membre')){
+      
       return children
     }else if(keycloak.hasRealmRole('role-admin')){
       return <Navigate to="/admin" />
