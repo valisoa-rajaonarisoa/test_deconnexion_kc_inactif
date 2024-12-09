@@ -3,6 +3,8 @@ import MenuHome from './MenuHome';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
+
+
     return (
       <nav className="bg-white shadow-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">

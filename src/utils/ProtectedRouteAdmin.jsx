@@ -11,6 +11,14 @@ export default function ProtectedRouteAdmin({children}) {
   if(!keycloakInitialized) return <div>**** Chargement en cours *****</div>
 
   
-  return keycloak.authenticated && keycloak.hasRealmRole('role-admin') ? children : <Navigate to="/" />;
+  if(keycloak.authenticated){
+    if(keycloak.hasRealmRole('role-admin')){
+      return children
+    }else if(keycloak.hasRealmRole('role-membre')){
+      return <Navigate to="/membre" />
+    }
+  }else{
+    return <Navigate to="/" />
+  }
 
 }

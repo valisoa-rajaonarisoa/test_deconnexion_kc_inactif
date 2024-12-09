@@ -23,7 +23,7 @@ import KeycloakContextProvider from './context/KeycloakContext';
 import ProtectedRouteAdmin from './utils/ProtectedRouteAdmin';
 import ProtectedRouteMembre from './utils/ProtectedRouteMembre';
 
-import ProtectedRoute from './utils/ProtectedRoute';
+import ProtectedRouteAuth from './utils/ProtectedRouteAuth';
 
 
 
@@ -31,7 +31,8 @@ import ProtectedRoute from './utils/ProtectedRoute';
 const route = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>
+    element:
+      <Home/>
   },
 
   // **********************protected 
@@ -39,11 +40,7 @@ const route = createBrowserRouter([
     path: "/protected",
     element:
     <KeycloakContextProvider> 
-      <ProtectedRoute>
-         <div>
-          testnjj
-         </div>
-      </ProtectedRoute>
+      <ProtectedRouteAuth/>
     </KeycloakContextProvider>
    
   },

@@ -1,28 +1,29 @@
 import React, { Children } from 'react'
 import { useKeycloak } from '../context/KeycloakContext'
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-export default function ProtectedRouteMembre({children}) {
+export default function ProtectedRouteAuth({children}) {
 
+
+  const navigate= useNavigate();
 //   ***********recuperation 
   const {keycloak, authenticated, keycloakInitialized}= useKeycloak();
 
 
 
   if(!keycloakInitialized) return <div>**** Chargement en cours *****</div>
-
- 
-  // return keycloak.authenticated && keycloak.hasRealmRole('role-membre')  ? children : <Navigate to="/" />;
-
+  
   if(keycloak.authenticated){
     if(keycloak.hasRealmRole('role-membre')){
-      return children
+      navigate("/membre")
     }else if(keycloak.hasRealmRole('role-admin')){
-      return <Navigate to="/admin" />
+      navigate("/admin")
+    }else{
+      navigate("/protected")
     }
-  }else{
-    return <Navigate to="/" />
+    
   }
 
+  return null;
 
 }
