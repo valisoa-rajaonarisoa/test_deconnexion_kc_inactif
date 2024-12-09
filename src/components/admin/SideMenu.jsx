@@ -7,19 +7,6 @@ export default function SideMenu() {
 
 const navigate=useNavigate()
 
-const handleLogout=()=>{
-  localStorage.clear();
-
- 
-  toast('bye bye ', {
-    icon: '👏',
-  });
-
-  navigate("/login");
-
-}
-
-
 
     return (
       <div className="fixed top-0 left-0 h-full w-64 bg-gray-700 text-white shadow-lg z-40">
@@ -73,7 +60,7 @@ const handleLogout=()=>{
             <li>
 
               <button
-               onClick={handleLogout}
+               
                className='block py-2 px-4 rounded hover:bg-gray-800 transition duration-200 flex'
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">

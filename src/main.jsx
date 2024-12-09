@@ -6,8 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home';
 
 import Membre from './pages/Membre';
-import Login from './pages/Login';
-import Register from './pages/Register';
+
 import Admin from './pages/admin/Admin';
 import FormationPage from './pages/admin/FormationPage';
 import MembrePage from './pages/admin/MembrePage';
@@ -15,13 +14,11 @@ import CommandePage from './pages/admin/CommandePage';
 import ChartPage from './pages/admin/ChartPage';
 import OneCommandePage from './pages/admin/OneCommandePage';
 import { Toaster } from 'react-hot-toast';
-import ProtectedRouteAdmin from './utils/ProtectedRouteAdmin';
-import ProtectedRouteMembre from './utils/ProtectedRouteMembre';
+
 
 import { QueryClient,QueryClientProvider } from '@tanstack/react-query';
 
-// *********recupartion du localStorage 
-const storedMembre = JSON.parse(localStorage.getItem("membre"));
+
 
 
 const route = createBrowserRouter([
@@ -31,10 +28,8 @@ const route = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: 
-    <ProtectedRouteAdmin storedMembre={storedMembre}>
-      <Admin/>
-    </ProtectedRouteAdmin>  ,
+    element: <Admin/>
+  ,
 
     children:[
 
@@ -67,19 +62,9 @@ const route = createBrowserRouter([
   },
   {
     path: "/membre",
-    element: 
-    <ProtectedRouteMembre storedMembre={storedMembre}>
-      <Membre/>
-    </ProtectedRouteMembre>
+    element: <Membre/>
   },
-  {
-    path: "/login",
-    element: <Login/>
-  },
-  {
-    path: "/register",
-    element: <Register/>
-  }
+ 
 ]);
 
 
