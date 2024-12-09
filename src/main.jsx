@@ -37,7 +37,14 @@ const route = createBrowserRouter([
   // **********************protected 
   {
     path: "/protected",
-    element:  <KeycloakContextProvider> <ProtectedRoute/> </KeycloakContextProvider>
+    element:
+    <KeycloakContextProvider> 
+      <ProtectedRoute>
+         <div>
+          testnjj
+         </div>
+      </ProtectedRoute>
+    </KeycloakContextProvider>
    
   },
 
