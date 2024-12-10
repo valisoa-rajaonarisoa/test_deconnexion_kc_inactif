@@ -1,6 +1,4 @@
-import React from 'react'
-import MenuHome from './MenuHome';
-import { Link } from 'react-router-dom';
+
 import NavbarPublic from '../components/public/header/NavbarPublic';
 import ContainerHeader from '../components/public/header/ContainerHeader';
 import Categorie from '../components/public/section/categorie/Categorie';

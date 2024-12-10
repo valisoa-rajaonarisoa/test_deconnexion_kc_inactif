@@ -7,7 +7,7 @@ export default function ProtectedRouteAuth({children}) {
 
   const navigate= useNavigate();
 //   ***********recuperation 
-  const {keycloak, authenticated, keycloakInitialized}= useKeycloak();
+  const {keycloak, keycloakInitialized}= useKeycloak();
 
 
 
