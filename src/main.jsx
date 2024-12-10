@@ -5,7 +5,7 @@ import './index.css'
 
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Home';
+
 
 import Membre from './pages/Membre';
 
@@ -25,6 +25,9 @@ import ProtectedRouteMembre from './utils/ProtectedRouteMembre';
 
 import ProtectedRouteAuth from './utils/ProtectedRouteAuth';
 import ProtectedRouteHome from './utils/ProtectedRouteHome';
+import Home from './pages/public/Home';
+import AuteurPage from './pages/auteur/AuteurPage';
+import ProfilePage from './pages/ProfilePage';
 
 
 
@@ -100,7 +103,47 @@ const route = createBrowserRouter([
     </ProtectedRouteMembre>
   </KeycloakContextProvider>
   },
- 
+
+
+  //************************* auteur  */
+  {
+    path: "/auteur",
+    element: <AuteurPage/>,
+
+    children:[
+
+      {
+        path: "/auteur/formation",
+        element: <FormationPage/>
+      },
+
+      {
+        path: "/auteur/commande",
+        element: <CommandePage/>
+      },
+
+      {
+        path: "/auteur/commande/:id",
+        element: <OneCommandePage/>
+      },
+
+      {
+        path: "/auteur/membre",
+        element: <MembrePage/>
+      },
+
+      // *******************************profile 
+      {
+        path:"/auteur/profile/:id",
+        element: <ProfilePage/>
+      }
+
+    ]
+  },
+
+
+
+  
 ]);
 
 
