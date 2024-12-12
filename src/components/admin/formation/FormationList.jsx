@@ -13,16 +13,16 @@ export default function FormationList({ toogleFormationPage }) {
     error,
     isLoading,
   } = useQuery({
-    queryKey: ['formation'], // Nom de la requête
+    queryKey: ['formation'], 
     queryFn: () =>
-      axios.get(`${import.meta.env.VITE_API_URL_FORMATION}`).then((res) => res.data),
-    onError: (error) => console.log(error), // Gestion des erreurs
+      axios.get(`${import.meta.env.VITE_API_BK_FORMATION}`).then((res) => res.data),
+    onError: (error) => console.log(error), 
   });
 
   // Mutation pour supprimer une formation
   const deleteFormationMutation = useMutation({
     mutationFn: (id) =>
-      axios.delete(`${import.meta.env.VITE_API_URL_FORMATION}/${id}`),
+      axios.delete(`${import.meta.env.VITE_API_BK_FORMATION}/${id}`),
 
     onSuccess: () => {
       
@@ -51,9 +51,10 @@ export default function FormationList({ toogleFormationPage }) {
         <thead>
           <tr className="bg-gray-200 text-gray-700">
             <th className="px-4 py-3 text-left">Formation</th>
-            <th className="px-4 py-3 text-left">Price</th>
-            <th className="px-4 py-3 text-left">Status</th>
+            <th className="px-4 py-3 text-left">Prix</th>
+            <th className="px-4 py-3 text-left">Categorie</th>
             <th className="px-4 py-3 text-left">Auteur</th>
+            <th className="px-4 py-3 text-left">Email</th>
             <th className="px-4 py-3 text-center">Action</th>
           </tr>
         </thead>
@@ -66,8 +67,8 @@ export default function FormationList({ toogleFormationPage }) {
               {/* Formation (Image + Nom) */}
               <td className="px-4 py-3 flex items-center space-x-3">
                 <img
-                  src={formation.image}
-                  // alt={formation.titre}
+                  src=""
+                 
                   className="w-10 h-10 rounded-full"
                 />
                 <span className="font-medium text-gray-700">{formation.titre}</span>
@@ -76,44 +77,20 @@ export default function FormationList({ toogleFormationPage }) {
               {/* Price */}
               <td className="px-4 py-3 text-gray-600">${formation.prix}</td>
 
-              {/* Status */}
+              
               <td className="px-4 py-3">
-                <span
-                  className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                    formation.status
-                      ? 'bg-green-100 text-green-700'
-                      : 'bg-red-100 text-red-700'
-                  }`}
-                >
-                  {formation.status ? 'publie' : 'inactif'}
-                </span>
+                {formation.username}
               </td>
 
               {/* Auteur */}
-              <td className="px-4 py-3 text-gray-600">{formation.auteur}</td>
+              <td className="px-4 py-3 text-gray-600">{formation.username}</td>
+
+
+              <td className="px-4 py-3 text-gray-600">{formation.email}</td>
 
               {/* Action */}
               <td className="px-4 py-3 text-center space-x-2">
-                {/* Bouton Modifier */}
-                <button
-                  className="px-4 py-2 text-sm text-white bg-blue-500 rounded hover:bg-blue-600 transition"
-                  onClick={toogleFormationPage}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
-                    />
-                  </svg>
-                </button>
+                
 
                 {/* Bouton Supprimer */}
                 <button

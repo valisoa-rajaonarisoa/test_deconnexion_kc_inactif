@@ -18,7 +18,7 @@ export default function FormationPage() {
       <h3 className='text-3xl font-bold text-blue-500 mb-5'>Les Formations</h3>
 
       {/* Bouton pour ajouter une formation */}
-      <AddFormation onAddClick={() => setShowPopup(true)} />
+      {/* <AddFormation onAddClick={() => setShowPopup(true)} /> */}
 
       {/* Popup */}
       {showPopup && (

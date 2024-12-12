@@ -28,6 +28,8 @@ import ProtectedRouteHome from './utils/ProtectedRouteHome';
 import Home from './pages/public/Home';
 import AuteurPage from './pages/auteur/AuteurPage';
 import ProfilePage from './pages/ProfilePage';
+import CategoriePage from './pages/auteur/CategoriePage';
+import CategorieAdminPage from './pages/admin/categorie/CategorieAdminPage';
 
 
 
@@ -36,9 +38,7 @@ const route = createBrowserRouter([
   {
     path: "/",
     element:
-    <ProtectedRouteHome>
       <Home/>
-    </ProtectedRouteHome>
   },
 
   // **********************protected 
@@ -88,7 +88,14 @@ const route = createBrowserRouter([
       ,{
         path:"/admin/",
         element: <ChartPage/>
-      }
+      },
+
+      
+      // **********************categorie 
+      ,{
+        path:"/admin/categorie",
+        element: <CategorieAdminPage/>
+      },
 
     ]
   },
@@ -137,6 +144,13 @@ const route = createBrowserRouter([
         path:"/auteur/profile/:id",
         element: <ProfilePage/>
       }
+
+      ,
+      {
+        path:"/auteur/categorie",
+        element: <CategoriePage/>
+      }
+
 
     ]
   },
