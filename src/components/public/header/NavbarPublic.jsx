@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function NavbarPublic() {
   const [monPanier, setMonPanier] = useState([
@@ -16,7 +16,12 @@ export default function NavbarPublic() {
     setVoirPanier(!voirPanier);
   }
 
+
+  const navigate = useNavigate();
+
   const totalPanier = monPanier.reduce((acc, panier) => acc + panier.prix, 0);
+
+
 
   return (
       <nav className="fixed w-full bg-white shadow-lg z-50">
@@ -74,7 +79,15 @@ export default function NavbarPublic() {
           }
         </div>
       </div>
-      <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold p-2 rounded-md">Se connecter</button>
+      {/* <button 
+        className="bg-blue-500 hover:bg-blue-600 text-white font-bold p-2 rounded-md"
+
+        onClick={()=>{navigate('/')}}
+      >
+        Se connecter
+      </button> */}
+
+      <Link to={import.meta.env.VITE_API_KC_WEB_ORIGIN}>Se connecter</Link>
 
       {/* Menu bouton mobile */}
       <button
