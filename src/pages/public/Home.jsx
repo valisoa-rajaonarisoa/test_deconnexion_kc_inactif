@@ -24,6 +24,7 @@ export default function Home() {
 
       <section>
         <div className="bg-[url('src/assets/img/back.jpg')] bg-cover bg-no-repeat bg-center bg-fixed mb-10">
+        
           <Categorie/>
         </div>
 
