@@ -1,6 +1,12 @@
 import React from 'react'
+import { useKeycloak } from '../../context/KeycloakContext'
 
 export default function NavbarMembre() {
+
+
+  const {keycloak}= useKeycloak();
+
+
   return (
     <nav className="bg-white shadow-md">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -9,23 +15,7 @@ export default function NavbarMembre() {
               TalentUp
             </a>
     
-            {/* Menu */}
-            {/* <div className="hidden md:flex space-x-6">
-              <a href="/" className="text-gray-600 hover:text-blue-600">
-                Home
-              </a>
-              <a href="/products" className="text-gray-600 hover:text-blue-600">
-                Products
-              </a>
-              <a href="/about" className="text-gray-600 hover:text-blue-600">
-                About Us
-              </a>
-              <a href="/contact" className="text-gray-600 hover:text-blue-600">
-                Contact
-              </a>
-            </div> */}
-    
-            {/* Recherche et panier */}
+          
             <div className="flex items-center space-x-4">
               <input
                 type="text"
@@ -72,6 +62,23 @@ export default function NavbarMembre() {
                   d="M4 6h16M4 12h16m-7 6h7"
                 ></path>
               </svg>
+            </button>
+
+
+
+            <button
+               
+               className='block py-2 px-4 rounded hover:bg-red-300 transition duration-200 flex'
+
+
+              //  *****Deconnexion 
+               onClick={() => keycloak.logout({ redirectUri: import.meta.env.VITE_API_KC_LOGOUT })}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+              </svg>
+
+                <span className='ml-2'>Deconnexion</span>
             </button>
           </div>
         </nav>

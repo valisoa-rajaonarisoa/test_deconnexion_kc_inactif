@@ -4,9 +4,19 @@ import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import LoadingAnimation from '../../loading/LoadingAnimation';
 import toast from 'react-hot-toast';
 
-export default function FormationList({ toogleFormationPage }) {
+export default function FormationList({ toogleFormationPage, kc , authenticated }) {
+
+  // ******************prendre le token 
+
+
+  // console.log(kc.token,authenticated);
+
   const queryClient = useQueryClient();
 
+
+  console.log(kc.token);
+
+  
   // Récupération des données avec useQuery
   const {
     data: formations,
@@ -22,7 +32,11 @@ export default function FormationList({ toogleFormationPage }) {
   // Mutation pour supprimer une formation
   const deleteFormationMutation = useMutation({
     mutationFn: (id) =>
-      axios.delete(`${import.meta.env.VITE_API_BK_FORMATION}/${id}`),
+      axios.delete(`${import.meta.env.VITE_API_BK_FORMATION}/${id}`,{
+        headers:{
+          Authorization : `Bearer ${kc.token}`
+        }
+      }),
 
     onSuccess: () => {
       
@@ -97,7 +111,10 @@ export default function FormationList({ toogleFormationPage }) {
                   className="px-4 py-2 text-sm text-white bg-red-500 rounded hover:bg-red-600 transition"
                   onClick={()=>{
 
-               
+              
+
+
+                    console.log(kc.token);
 
                     deleteFormationMutation.mutate(formation.id);
 

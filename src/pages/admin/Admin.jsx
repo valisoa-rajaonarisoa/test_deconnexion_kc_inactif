@@ -8,18 +8,14 @@ import { useKeycloak } from '../../context/KeycloakContext'
 
 export default function Admin() {
 
-  // *******************recuperation 
-
-
-  const kc= useKeycloak();
-
-  console.log(kc);
-
-
-
+  
 
   // ********************************fause data pour manipuler les chartJs
 
+  const {keycloak}= useKeycloak();
+  
+  console.log(keycloak);
+  
   return (
     <div>
         <Navbar/>

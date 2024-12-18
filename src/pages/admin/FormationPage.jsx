@@ -4,8 +4,15 @@ import FormationList from '../../components/admin/formation/FormationList';
 import AddFormation from '../../components/admin/formation/AddFormation';
 import PopUpAddFormation from '../../components/admin/formation/PopUpAddFormation';
 import PopUpEditFormation from '../../components/admin/formation/PopUpEditFormation';
+import { useKeycloak } from '../../context/KeycloakContext';
 
 export default function FormationPage() {
+
+
+  // ******************* importation de keycloak 
+  const {keycloak:kc,authenticated}= useKeycloak();
+
+
   const [showPopup, setShowPopup] = useState(false);
   const [isClickEdit,setIsClickEdit]=useState(false)
  
@@ -31,7 +38,7 @@ export default function FormationPage() {
 
 
       {/* Liste des formations */}
-      <FormationList toogleFormationPage={toogleFormationPage}/>
+      <FormationList toogleFormationPage={toogleFormationPage} kc={kc} authenticated={authenticated}/>
     </div>
   );
 }
