@@ -1,18 +1,20 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import Keycloak from 'keycloak-js';
 
-// 1. Création du contexte
 export const KeycloakContext = createContext();
 
-// 2. Installation du contexte
+
 export default function KeycloakContextProvider({ children }) {
 
   const [authenticated, setAuthenticated] = useState(false);
   const [keycloakInitialized, setKeycloakInitialized] = useState(false);
   const [keycloak, setKeycloak] = useState(null);
-  const [lastActivity, setLastActivity] = useState(Date.now()); // Ajout d'un état pour suivre l'inactivité
 
-  // 3. Configuration initiale de Keycloak
+  // **********************DEconnexion inactivité 1 ***recuperation date actuelle ou date du mouvement du souris ou clavier 
+
+  const [lastActivity, setLastActivity] = useState(Date.now());
+
+
   const initOptions = {
     url: import.meta.env.VITE_API_KC_URL,
     realm: import.meta.env.VITE_API_KC_REALM,
@@ -21,7 +23,7 @@ export default function KeycloakContextProvider({ children }) {
 
   const kc = new Keycloak(initOptions);
 
-  // 4. Rafraîchir le token s'il expire dans 30 secondes
+  // a  Rafrachir le token normalemnt 
   const refreshToken = async () => {
     try {
       const refreshed = await kc.updateToken(30); // Rafraîchir le token avant 30 secondes d'expiration
@@ -34,7 +36,7 @@ export default function KeycloakContextProvider({ children }) {
     }
   };
 
-  // 5. Initialisation de Keycloak et gestion de la connexion
+  // *********************************DEConnexion inactivity 5 *** GERER DANS LE USEFFECT INITKEYCLOAK 
   useEffect(() => {
     const initKeycloak = async () => {
       try {
@@ -48,11 +50,13 @@ export default function KeycloakContextProvider({ children }) {
         setKeycloakInitialized(true);
         setKeycloak(kc);
 
-        // Vérifier l'inactivité toutes les 30 secondes (par exemple)
+        // ********************** DEConnexion inactivity 5 a ************* definir un intervalle tout les 30 sec 
         const intervalId = setInterval(() => {
-          if (Date.now() - lastActivity > 60000) { // Si 60 secondes d'inactivité, déconnexion
+          // ******************** dateActuel - lastActivity du clavier/souris  > a la session idle time out 
+          if (Date.now() - lastActivity > 30000) { // si = ou sup a 30 seconde donc deconnexion 
             kc.logout({ redirectUri: window.location.origin });
           }
+
         }, 30000); // Vérifier toutes les 30 secondes
         return () => clearInterval(intervalId);
 
@@ -65,7 +69,8 @@ export default function KeycloakContextProvider({ children }) {
 
   }, [keycloakInitialized, lastActivity]); // Ajouter `lastActivity` dans la dépendance pour suivre l'inactivité
 
-  // 6. Rafraîchissement du token toutes les 25 secondes
+
+  // ***********************DEConnexion inactivity 4 ****** refresh token et mise a jour du lastACtivity tout les 25 secondes 
   useEffect(() => {
     const intervalId = setInterval(() => {
       refreshToken();
@@ -74,12 +79,13 @@ export default function KeycloakContextProvider({ children }) {
     return () => clearInterval(intervalId);
   }, []);
 
-  // 7. Gérer l'activité de l'utilisateur pour réinitialiser le timer d'inactivité
+
+  // ************DEConnexion inactivity 2 *********** fonction pour mettre a jour le lastActivity 
   const handleUserActivity = () => {
     setLastActivity(Date.now()); // Met à jour la dernière activité lors d'une action de l'utilisateur
   };
 
-  // Ajouter des écouteurs d'événements pour détecter l'activité de l'utilisateur
+  // **********DEConnexion inactivity 3 ************ appel du handleUserActivity dans le useEffect si on entends le mouse clavier /souris 
   useEffect(() => {
     const handleEvents = () => {
       window.addEventListener('mousemove', handleUserActivity);
@@ -93,7 +99,7 @@ export default function KeycloakContextProvider({ children }) {
     handleEvents();
   }, []);
 
-  // 8. Partager Keycloak au reste de l'application
+
   return (
     <KeycloakContext.Provider value={{ keycloak, authenticated, keycloakInitialized }}>
       {children}
