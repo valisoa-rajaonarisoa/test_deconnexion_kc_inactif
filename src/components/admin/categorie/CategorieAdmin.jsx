@@ -2,8 +2,13 @@ import axios from 'axios';
 import React from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { useKeycloak } from '../../../context/KeycloakContext';
 
 export default function CategorieAdmin() {
+
+
+  const {keycloak : kc} = useKeycloak();
+
   // *********************1
   const queryClient = useQueryClient();
 
@@ -26,8 +31,12 @@ export default function CategorieAdmin() {
   // ************************supprimer 
   const deleteCategorieMutation = useMutation({
     mutationFn: (id) =>
-      axios.delete(`${import.meta.env.VITE_API_BK_CATEGORIE}/${id}`),
+      axios.delete(`${import.meta.env.VITE_API_BK_CATEGORIE}/${id}`,{
+      headers:{
+        Authorization : `Bearer ${kc.token}`
+      }
 
+    }),
     onSuccess: () => {
       
       queryClient.invalidateQueries(['categorie']);
